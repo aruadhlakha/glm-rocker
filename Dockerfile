@@ -12,8 +12,8 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 	ca-certificates \
 	&& update-ca-certificates 
 
-RUN 	Rscript -e 'install.packages(”ncdf4”)' \
-	&& Rscript -e 'install.packages(”devtools”)' \
+RUN 	Rscript -e 'install.packages("ncdf4")' \
+	&& Rscript -e 'install.packages("devtools")' \
 	&& Rscript -e 'devtools::install_github("GLEON/GLM3r")' \
 	&& Rscript -e 'devtools::install_github("USGS-R/glmtools", ref = "ggplot_overhaul")' 
 	
