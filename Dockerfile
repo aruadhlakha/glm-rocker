@@ -43,10 +43,6 @@ WORKDIR ../GLM
 
 RUN FC=gfortran-8 ./build_glm.sh
 
-
-
-
-
-	
-
-	
+COPY rserver.conf /etc/rstudio/rserver.conf
+RUN apt-get update && apt-get install -y python3-pip
+RUN pip3 install py-cdrive-api
