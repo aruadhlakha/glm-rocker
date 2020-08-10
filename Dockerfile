@@ -17,19 +17,25 @@ RUN 	Rscript -e 'install.packages("ncdf4")' \
 	&& Rscript -e 'devtools::install_github("GLEON/GLM3r",ref="GLMv.3.1.0a3")' \
 	&& Rscript -e 'devtools::install_github("USGS-R/glmtools", ref = "ggplot_overhaul")' 
 
-RUN	mkdir ~/test-scripts \ 
-	&& cd ~/test-scripts \
-	&& git clone https://github.com/aruadhlakha/GLM-scripts.git \
-	&& cd ..
+RUN	mkdir ~/rstudio/test-scripts 
 
-RUN	mkdir ~/configurations \ 
-	&& cd ~/configurations \
-	&& git clone https://github.com/aruadhlakha/glm-configs.git \
-	&& cd ..
+WORKDIR ~/rstudio/test-scripts 
+
+RUN	git clone https://github.com/aruadhlakha/GLM-scripts.git 
+
+WORKDIR	..
+
+RUN	mkdir ~/rstudio/configurations 
+
+WORKDIR ~/rstudio/configurations 
+
+RUN	git clone https://github.com/aruadhlakha/glm-configs.git 
+
+WORKDIR ..
 	
-RUN 	mkdir ~/GLM-a
+RUN 	mkdir ~/rstudio/GLM-a
 
-WORKDIR ~/GLM-a
+WORKDIR ~/rstudio/GLM-a
 
 RUN git clone https://github.com/AquaticEcoDynamics/GLM.git && \
 	git clone https://github.com/AquaticEcoDynamics/libplot.git && \
