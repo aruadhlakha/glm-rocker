@@ -32,31 +32,6 @@ WORKDIR ~/configurations
 RUN	git clone https://github.com/aruadhlakha/glm-configs.git 
 
 WORKDIR ..
-	
-RUN 	mkdir ~/GLM-a
-
-WORKDIR ~/GLM-a
-
-RUN git clone https://github.com/AquaticEcoDynamics/GLM.git && \
-	git clone https://github.com/AquaticEcoDynamics/libplot.git && \
-	git clone https://github.com/AquaticEcoDynamics/libutil.git && \
-	git clone https://github.com/aruadhlakha/libaed2.git
-
-WORKDIR libutil
-
-RUN F90=gfortran-8 make
-
-WORKDIR ../libplot
-
-RUN make
-
-WORKDIR ../libaed2
-
-RUN F90=gfortran-8 make
-
-WORKDIR ../GLM
-
-RUN FC=gfortran-8 ./build_glm.sh
 
 COPY rserver.conf /etc/rstudio/rserver.conf
 RUN apt-get update && apt-get install -y python3-pip
