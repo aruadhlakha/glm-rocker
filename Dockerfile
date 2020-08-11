@@ -17,21 +17,17 @@ RUN 	Rscript -e 'install.packages("ncdf4")' \
 	&& Rscript -e 'devtools::install_github("GLEON/GLM3r",ref="GLMv.3.1.0a3")' \
 	&& Rscript -e 'devtools::install_github("USGS-R/glmtools", ref = "ggplot_overhaul")' 
 
-RUN	mkdir ~/test-scripts 
+RUN	mkdir /home/rstudio/test-scripts 
 
-WORKDIR ~/test-scripts 
+WORKDIR /home/rstudio/test-scripts 
 
 RUN	git clone https://github.com/aruadhlakha/GLM-scripts.git 
 
-WORKDIR	..
+RUN	mkdir /home/rstudio/configurations 
 
-RUN	mkdir ~/configurations 
-
-WORKDIR ~/configurations 
+WORKDIR /home/rstudio/configurations 
 
 RUN	git clone https://github.com/aruadhlakha/glm-configs.git 
-
-WORKDIR ..
 
 COPY rserver.conf /etc/rstudio/rserver.conf
 RUN apt-get update && apt-get install -y python3-pip
