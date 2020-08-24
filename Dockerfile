@@ -29,6 +29,10 @@ WORKDIR /home/rstudio/configurations
 
 RUN	git clone https://github.com/aruadhlakha/glm-configs.git 
 
+RUN 	echo "rstudio  ALL=(ALL) NOPASSWD:ALL">>/etc/sudoers
+
+RUN 	chmod -R 777 .
+
 COPY rserver.conf /etc/rstudio/rserver.conf
 RUN apt-get update && apt-get install -y python3-pip
 RUN pip3 install py-cdrive-api
