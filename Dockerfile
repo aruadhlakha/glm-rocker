@@ -16,6 +16,19 @@ RUN 	Rscript -e 'install.packages("ncdf4")' \
 	&& Rscript -e 'install.packages("devtools")' \
 	&& Rscript -e 'devtools::install_github("GLEON/GLM3r",ref="GLMv.3.1.0a3")' \
 	&& Rscript -e 'devtools::install_github("USGS-R/glmtools", ref = "ggplot_overhaul")' 
+	&& Rscript -e 'devtools::install_github("GLEON/rLakeAnalyzer")'
+	&& Rscript -e 'devtools::install_github("aemon-j/FLakeR", ref = "inflow")'
+	&& Rscript -e 'devtools::install_github("aemon-j/GOTMr")'
+	&& Rscript -e 'devtools::install_github("aemon-j/gotmtools")'
+	&& Rscript -e 'devtools::install_github("aemon-j/SimstratR")'
+	&& Rscript -e 'devtools::install_github("aemon-j/MyLakeR")'
+	&& Rscript -e 'devtools::install_github("aemon-j/MyLakeR")'
+	&& Rscript -e 'devtools::install_github("aemon-j/LakeEnsemblR")'
+
+RUN 	echo "rstudio  ALL=(ALL) NOPASSWD:ALL">>/etc/sudoers
+
+
+RUN 	chmod -R 777 .
 
 RUN	mkdir /home/rstudio/test-scripts 
 
@@ -23,13 +36,14 @@ WORKDIR /home/rstudio/test-scripts
 
 RUN	git clone https://github.com/aruadhlakha/GLM-scripts.git 
 
+RUN 	chmod -R 777 .
+
 RUN	mkdir /home/rstudio/configurations 
 
 WORKDIR /home/rstudio/configurations 
 
 RUN	git clone https://github.com/aruadhlakha/glm-configs.git 
 
-RUN 	echo "rstudio  ALL=(ALL) NOPASSWD:ALL">>/etc/sudoers
 
 RUN 	chmod -R 777 .
 
