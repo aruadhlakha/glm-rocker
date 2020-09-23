@@ -27,9 +27,6 @@ RUN 	Rscript -e 'install.packages("ncdf4")' \
 
 RUN 	echo "rstudio  ALL=(ALL) NOPASSWD:ALL">>/etc/sudoers
 
-
-RUN 	chmod -R 777 .
-
 RUN	mkdir /home/rstudio/test-scripts 
 
 WORKDIR /home/rstudio/test-scripts 
